@@ -78,7 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#DB3022"
-                    android:text="Change Shipping Info"
+                    android:text="Save Shipping Info"
                     android:textColor="#FFFFFF"
                     android:paddingBottom="8dp" />
             </LinearLayout>

@@ -75,4 +75,6 @@ public class SearchActivity extends AppCompatActivity {
         }
         adapter.updateList(filteredList);
     }
+
+
 }

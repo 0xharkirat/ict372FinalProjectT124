@@ -5,6 +5,8 @@ public class Product {
     private int imageResource;
 
 
+
+
     public Product(String name, int imageResource) {
         this.name = name;
         this.imageResource = imageResource;

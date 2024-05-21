@@ -3,6 +3,7 @@ package com.example.ict372finalprojectt124;
 
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -53,7 +54,7 @@ public class CheckoutActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle change shipping info action
-                Toast.makeText(CheckoutActivity.this, "Change Shipping Info", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CheckoutActivity.this, "Shipping Info Saved", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -112,5 +113,10 @@ public class CheckoutActivity extends AppCompatActivity {
 
 
         Toast.makeText(this, summary, Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(CheckoutActivity.this, PurchaseHistoryActivity.class);
+        startActivity(intent);
     }
+
+
 }
