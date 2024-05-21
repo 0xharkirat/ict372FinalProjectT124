@@ -8,12 +8,22 @@
     tools:context=".HomeActivity">
 
     <Button
-        android:id="@+id/macButton"
+        android:id="@+id/searchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="190dp"
         android:layout_marginEnd="144dp"
-        android:text="MacBookAir" />
+        android:text="Search Page" />
+
+    <Button
+        android:id="@+id/checkoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="296dp"
+        android:layout_marginEnd="143dp"
+        android:text="Checkout Page" />
 </RelativeLayout>

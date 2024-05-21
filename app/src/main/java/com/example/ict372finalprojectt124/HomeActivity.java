@@ -13,7 +13,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class HomeActivity extends AppCompatActivity {
 
-    Button macButton;
+    Button searchButton;
+
+    Button checkoutButton;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,13 +25,23 @@ public class HomeActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
 
-        macButton = (Button) findViewById(R.id.macButton);
+        searchButton = (Button) findViewById(R.id.searchButton);
+        checkoutButton = (Button) findViewById(R.id.checkoutButton);
 
-        macButton.setOnClickListener(new View.OnClickListener() {
+        searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        checkoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, CheckoutActivity.class);
+                startActivity(intent);
+
             }
         });
 
