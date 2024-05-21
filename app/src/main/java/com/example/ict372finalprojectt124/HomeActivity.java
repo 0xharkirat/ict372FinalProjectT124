@@ -17,6 +17,10 @@ public class HomeActivity extends AppCompatActivity {
 
     Button checkoutButton;
 
+    Button macButton;
+
+    Button purchaseHistoryButton;
+
 
 
     @Override
@@ -27,6 +31,10 @@ public class HomeActivity extends AppCompatActivity {
 
         searchButton = (Button) findViewById(R.id.searchButton);
         checkoutButton = (Button) findViewById(R.id.checkoutButton);
+        macButton = (Button) findViewById(R.id.macButton);
+        purchaseHistoryButton = (Button) findViewById(R.id.purchaseHistoryButton);
+
+
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +50,23 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(HomeActivity.this, CheckoutActivity.class);
                 startActivity(intent);
 
+            }
+        });
+
+        macButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, DetailsActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        purchaseHistoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, PurchaseHistoryActivity.class);
+                startActivity(intent);
             }
         });
 
