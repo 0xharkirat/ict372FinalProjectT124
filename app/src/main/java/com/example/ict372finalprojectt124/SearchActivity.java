@@ -35,11 +35,11 @@ public class SearchActivity extends AppCompatActivity {
 
         // Initialize product list with dummy data (you can replace it with your actual data)
         productList = new ArrayList<>();
-        productList.add(new Product("Sony WH-1000XM5 Premium Noise Cancelling Wireless Over-Ear Headphones (Black)", R.drawable.sony_wh_1000xm5));
-        productList.add(new Product("Samsung Galaxy A55 5G 128GB (Awesome Navy)", R.drawable.samsung_galaxy_a55));
-        productList.add(new Product("Apple iPhone 15 Pro 128GB (White Titanium)", R.drawable.apple_iphone_15_pro));
-        productList.add(new Product("MSI Modern AM272P 27\" FHD Desktop All-in-One PC (Intel i7)[2.5TB]", R.drawable.msi_modern_am272p));
-        productList.add(new Product("Apple MacBook Air 13-inch with M3 Chip, 8-core GPU, 256GB/8GB (Midnight)[2024]", R.drawable.apple_macbook_air));
+        productList.add(new Product("Apple iPhone 15 Pro 128GB (White Titanium)", 1599.99, R.drawable.apple_iphone_15_pro));
+        productList.add(new Product("Apple MacBook Air 13-inch with M3 Chip, 8-core GPU, 256GB/8GB (Midnight)[2024]", 1699.99, R.drawable.apple_macbook_air));
+        productList.add(new Product("MSI Modern AM272P 27\\\" FHD Desktop All-in-One PC (Intel i7)[2.5TB]", 1299.99, R.drawable.msi_modern_am272p));
+        productList.add(new Product("Samsung Galaxy A55 5G 128GB (Awesome Navy)", 599.99, R.drawable.samsung_galaxy_a55));
+        productList.add(new Product("Sony WH-1000XM5 Premium Noise Cancelling Wireless Over-Ear Headphones (Black)", 399.99, R.drawable.sony_wh_1000xm5));
 
 
         // Set up RecyclerView with custom adapter
