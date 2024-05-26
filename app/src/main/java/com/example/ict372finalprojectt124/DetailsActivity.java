@@ -35,32 +35,33 @@ public class DetailsActivity extends AppCompatActivity {
         incrementButton = findViewById(R.id.incrementButton);
         decrementButton = findViewById(R.id.decrementButton);
 
-        Intent intent = getIntent();
-        String productName = intent.getStringExtra("productName");
-        int productImage = intent.getIntExtra("productImage", -1);
-        String productPrice = intent.getStringExtra("productPrice");
+        Product product = (Product) getIntent().getSerializableExtra("product");
+
+
+        String productName = product.getName();
+        int productImage = product.getImageResource();
+        double productPrice = product.getPrice();
+
 
         if (productImage != -1) {
             productImageView.setImageResource(productImage);
         }
         productNameTextView.setText(productName);
-        productPriceTextView.setText(productPrice);
+        productPriceTextView.setText(String.valueOf(productPrice));
 
         incrementButton.setOnClickListener(v -> {
             int quantity = Integer.parseInt(quantityEditText.getText().toString().trim());
+            product.setQuantity(quantity + 1);
             quantityEditText.setText(String.valueOf(quantity + 1));
         });
 
         decrementButton.setOnClickListener(v -> {
             int quantity = Integer.parseInt(quantityEditText.getText().toString().trim());
             if (quantity > 1) {
+                product.setQuantity(quantity + 1);
                 quantityEditText.setText(String.valueOf(quantity - 1));
             }
         });
-
-
-
-
 
 
     }

@@ -1,6 +1,8 @@
 package com.example.ict372finalprojectt124;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private String name;
     private int imageResource;
     private double price;

@@ -96,9 +96,7 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.On
     @Override
     public void onProductClicked(Product product) {
         Intent intent = new Intent(this, DetailsActivity.class);
-        intent.putExtra("productName", product.getName());
-        intent.putExtra("productImage", product.getImageResource());
-        intent.putExtra("productPrice", product.getPrice());
+        intent.putExtra("product", product);
         startActivity(intent);
 
 
