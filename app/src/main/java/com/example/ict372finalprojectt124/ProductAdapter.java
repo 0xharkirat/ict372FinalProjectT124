@@ -17,8 +17,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     private Context context;
     private OnAddToCartClickListener addToCartClickListener;
 
+    private OnProductClickListener productClickListener;
+
     public interface OnAddToCartClickListener {
         void onAddToCartClick(Product product);
+    }
+
+    public interface OnProductClickListener {
+        void onProductClicked(Product product);
     }
 
     public ProductAdapter(List<Product> productList, Context context) {
@@ -30,8 +36,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         this.addToCartClickListener = listener;
     }
 
-    @NonNull
-    @Override
+    public void setOnProductClickListener(OnProductClickListener listener) {
+        this.productClickListener = listener;
+    }
+
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.product_item_row, parent, false);
@@ -46,11 +54,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.productPriceTextView.setText(String.valueOf(product.getPrice()));
         holder.productImageView.setImageResource(product.getImageResource());
 
-        holder.addToCartButton.setOnClickListener(new View.OnClickListener() {
+        holder.viewDetailsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (addToCartClickListener != null) {
-                    addToCartClickListener.onAddToCartClick(product);
+                if (productClickListener != null) {
+                    productClickListener.onProductClicked(product);
                 }
             }
         });
@@ -66,14 +74,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         public ImageView productImageView;
         public TextView productNameTextView;
         public TextView productPriceTextView;
-        public Button addToCartButton;
+        public Button viewDetailsButton;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             productImageView = itemView.findViewById(R.id.item_product_image);
             productNameTextView = itemView.findViewById(R.id.item_product_name);
             productPriceTextView = itemView.findViewById(R.id.item_product_price);
-            addToCartButton = itemView.findViewById(R.id.add_to_cart_button);
+            viewDetailsButton = itemView.findViewById(R.id.viewDetailsButton);
         }
     }
 }
