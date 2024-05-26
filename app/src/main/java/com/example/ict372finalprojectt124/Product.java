@@ -13,11 +13,19 @@ public class Product implements Serializable {
 
 
 
+    public Product(String name, double price, int imageResource, int quantity) {
+        this.name = name;
+        this.imageResource = imageResource;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    // Constructor without quantity parameter (defaults quantity to 1)
     public Product(String name, double price, int imageResource) {
         this.name = name;
         this.imageResource = imageResource;
         this.price = price;
-        this.quantity = 1; //
+        this.quantity = 1; // Default quantity
     }
 
 

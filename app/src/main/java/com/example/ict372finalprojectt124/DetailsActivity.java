@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -60,6 +61,21 @@ public class DetailsActivity extends AppCompatActivity {
             if (quantity > 1) {
                 product.setQuantity(quantity + 1);
                 quantityEditText.setText(String.valueOf(quantity - 1));
+            }
+        });
+
+        addToCartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Cart.addToCart(product);
+
+                product.setQuantity(1);
+
+                // Show toast message
+                Toast.makeText(DetailsActivity.this, productName + " added to cart", Toast.LENGTH_SHORT).show();
+
+                // Navigate to cart activity
+                startActivity(new Intent(DetailsActivity.this, CartActivity.class));
             }
         });
 
