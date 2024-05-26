@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity implements CustomAdapter.OnProductClickListener {
     private EditText searchEditText;
     private RecyclerView searchRecyclerView;
     private List<Product> productList;
@@ -44,6 +45,7 @@ public class SearchActivity extends AppCompatActivity {
 
         // Set up RecyclerView with custom adapter
         adapter = new CustomAdapter(productList);
+        adapter.setOnProductClickListener(this);
         searchRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         searchRecyclerView.setAdapter(adapter);
 
@@ -77,4 +79,10 @@ public class SearchActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onProductClicked(Product product) {
+        Intent intent = new Intent(this, DetailsActivity.class);
+        intent.putExtra("product", product);
+        startActivity(intent);
+    }
 }

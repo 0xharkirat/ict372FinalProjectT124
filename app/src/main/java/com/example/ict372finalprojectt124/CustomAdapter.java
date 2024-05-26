@@ -20,9 +20,18 @@ import java.util.List;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
     private List<Product> productList;
 
+    private OnProductClickListener  productClickListener;
 
+
+    public interface OnProductClickListener {
+        void onProductClicked(Product product);
+    }
     public CustomAdapter(List<Product> productList) {
         this.productList = productList;
+    }
+
+    public void setOnProductClickListener(OnProductClickListener listener) {
+        this.productClickListener = listener;
     }
 
 
@@ -39,6 +48,18 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         Product product = productList.get(position);
         holder.productName.setText(product.getName());
         holder.productImage.setImageResource(product.getImageResource());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (productClickListener != null) {
+                    productClickListener.onProductClicked(product);
+                }
+            }
+        });
+
+
+
     }
 
 

@@ -7,9 +7,12 @@
 
     <ImageView
         android:id="@+id/productImage"
+        android:src="@drawable/apple_macbook_air"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:scaleType="centerCrop"/>
+
+
 
 
     <TextView
