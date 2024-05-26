@@ -44,17 +44,23 @@ public class CartActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         // Update UI based on cart items
-        if (cartItems.isEmpty()) {
+       updateUI();
+
+        buttonProceedToCheckout.setOnClickListener(v -> {
+            startActivity(new Intent(CartActivity.this, CheckoutActivity.class));
+        });
+
+
+
+    }
+
+    public void updateUI() {
+        if (Cart.isEmpty()) {
             textEmptyCart.setVisibility(View.VISIBLE);
             buttonProceedToCheckout.setVisibility(View.GONE);
         } else {
             textEmptyCart.setVisibility(View.GONE);
             buttonProceedToCheckout.setVisibility(View.VISIBLE);
         }
-
-        buttonProceedToCheckout.setOnClickListener(v -> {
-            startActivity(new Intent(CartActivity.this, CheckoutActivity.class));
-        });
-
     }
 }

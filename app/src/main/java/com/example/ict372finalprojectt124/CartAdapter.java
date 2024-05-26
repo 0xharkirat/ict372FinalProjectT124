@@ -7,9 +7,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
+
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
     private List<CartItem> cartItemList;
@@ -28,7 +31,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         return new CartViewHolder(itemView);
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
         Product cartItem = cartItemList.get(position);
@@ -38,52 +40,45 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.productPriceTextView.setText(String.valueOf(cartItem.getPrice() * cartItem.getQuantity()));
         holder.quantityText.setText(String.valueOf(cartItem.getQuantity()));
 
-
-        holder.subtractButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int position = holder.getAdapterPosition();
-                if (position != RecyclerView.NO_POSITION) {
-                    Product cartItem = cartItemList.get(position);
-                    int quantity = cartItem.getQuantity();
-                    // Ensure quantity is greater than 1
-                    if (quantity > 1) {
-                        quantity--; // Decrease quantity by 1
-                        cartItem.setQuantity(quantity);
-                        // Update quantity display
-                        holder.quantityText.setText(String.valueOf(quantity));
-                        // Update price based on quantity
-                        holder.productPriceTextView.setText(String.valueOf(cartItem.getPrice() * quantity));
-                    }
-                }
-            }
-        });
-
-        holder.addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int position = holder.getAdapterPosition();
-                if (position != RecyclerView.NO_POSITION) {
-                    Product cartItem = cartItemList.get(position);
-                    int quantity = cartItem.getQuantity();
-                    quantity++; // Increase quantity by 1
-                    cartItem.setQuantity(quantity);
-                    // Update quantity display
+        holder.subtractButton.setOnClickListener(v -> {
+            int position1 = holder.getAdapterPosition();
+            if (position1 != RecyclerView.NO_POSITION) {
+                CartItem cartItem1 = cartItemList.get(position1);
+                int quantity = cartItem1.getQuantity();
+                if (quantity > 1) {
+                    quantity--;
+                    cartItem1.setQuantity(quantity);
                     holder.quantityText.setText(String.valueOf(quantity));
-                    // Update price based on quantity
-                    holder.productPriceTextView.setText(String.valueOf(cartItem.getPrice() * quantity));
+                    holder.productPriceTextView.setText(String.valueOf(cartItem1.getPrice() * quantity));
                 }
             }
         });
 
+        holder.addButton.setOnClickListener(v -> {
+            int position1 = holder.getAdapterPosition();
+            if (position1 != RecyclerView.NO_POSITION) {
+                CartItem cartItem1 = cartItemList.get(position1);
+                int quantity = cartItem1.getQuantity();
+                quantity++;
+                cartItem1.setQuantity(quantity);
+                holder.quantityText.setText(String.valueOf(quantity));
+                holder.productPriceTextView.setText(String.valueOf(cartItem1.getPrice() * quantity));
+            }
+        });
 
-        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle delete button click
-                // For example, remove the item from the list and notify adapter
-                cartItemList.remove(position);
-                notifyItemRemoved(position);
+        holder.deleteButton.setOnClickListener(v -> {
+            int position1 = holder.getAdapterPosition();
+            if (position1 != RecyclerView.NO_POSITION) {
+                CartItem cartItem1 = cartItemList.get(position1);
+                cartItemList.remove(position1);
+                Cart.removeFromCart(cartItem1);
+                notifyItemRemoved(position1);
+                notifyItemRangeChanged(position1, cartItemList.size());
+
+                // Notify the activity to update the UI
+                if (context instanceof CartActivity) {
+                    ((CartActivity) context).updateUI();
+                }
             }
         });
     }
@@ -112,8 +107,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             addButton = itemView.findViewById(R.id.add_button);
             quantityText = itemView.findViewById(R.id.quantity_text);
             deleteButton = itemView.findViewById(R.id.delete_button);
-
-
         }
     }
 }
+

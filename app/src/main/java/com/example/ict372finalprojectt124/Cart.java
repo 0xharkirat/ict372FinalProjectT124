@@ -19,4 +19,12 @@ public class Cart {
     public static List<CartItem> getCartItems() {
         return cartItems;
     }
+
+    public static boolean isEmpty() {
+        return cartItems.isEmpty();
+    }
+
+    public static void removeFromCart(CartItem cartItem) {
+        cartItems.remove(cartItem);
+    }
 }
