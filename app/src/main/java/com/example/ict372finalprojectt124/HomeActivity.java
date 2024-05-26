@@ -1,11 +1,18 @@
 package com.example.ict372finalprojectt124;
 
+import com.example.ict372finalprojectt124.R;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toolbar;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -13,23 +20,25 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.appbar.MaterialToolbar;
+
 import java.nio.BufferUnderflowException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements ProductAdapter.OnProductClickListener {
 
-    Button searchButton;
 
-    Button checkoutButton;
-
-    Button purchaseHistoryButton;
-
+    public static final int ACTION_SEARCH = R.id.action_search;
 
 
     private RecyclerView recyclerView;
     private ProductAdapter adapter;
     private List<Product> productList;
+
+    private androidx.appcompat.widget.Toolbar toolbar;
+
+
 
 
 
@@ -42,6 +51,8 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.On
         setContentView(R.layout.activity_home);
 
         recyclerView = findViewById(R.id.recycler_view_products);
+        toolbar = findViewById(R.id.homeToolbar);
+        setSupportActionBar(toolbar);
         productList = new ArrayList<>();
 
         // Add products
@@ -58,9 +69,7 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.On
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
-//        searchButton = (Button) findViewById(R.id.searchButton);
-//        checkoutButton = (Button) findViewById(R.id.checkoutButton);
-//        purchaseHistoryButton = (Button) findViewById(R.id.purchaseHistoryButton);
+
 //
 
 //        searchButton.setOnClickListener(new View.OnClickListener() {
@@ -90,8 +99,44 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.On
 //            }
 //        });
 
+
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.action_search){
+            Intent cartIntent = new Intent(this, SearchActivity.class);
+            startActivity(cartIntent);
+            return true;
+        } else if (id == R.id.action_cart) {
+            Intent cartIntent = new Intent(this, CartActivity.class);
+            startActivity(cartIntent);
+            return true;
+
+        } else if (id == R.id.action_purchase_history) {
+            Intent cartIntent = new Intent(this, PurchaseHistoryActivity.class);
+            startActivity(cartIntent);
+            return true;
+
+        }
+        else {
+            return super.onOptionsItemSelected(item);
+
+        }
+
+
+
+    }
 
     @Override
     public void onProductClicked(Product product) {
